@@ -1,10 +1,8 @@
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from app.functions.genResponse import genResponse
-from app.routers.query import router  # Import the router
 
 
 
@@ -35,8 +33,6 @@ async def predict(message: Message):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-#app.include_router(query)
-app.include_router(router)  # Include the chatbot router with a prefix
 
 if __name__ == "__main__":
     import uvicorn
